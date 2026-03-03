@@ -1,0 +1,58 @@
+body {
+    padding: 40px 20px 0;
+}
+
+header {
+    text-align: center;
+}
+
+header h1 {
+    font-size: 4rem;
+    margin-bottom: 20px;
+}
+
+header h6 {
+    font-size: 1.8rem;
+    font-weight: 400;
+    margin-bottom: 30px;
+    color: var(--text-color);
+}
+
+input {
+    width: 80%;
+    height: 40px;
+    border-radius: 15px;
+}
+
+main {
+    margin-top: 50px;
+}
+
+.card {
+    background-color: white;
+    padding: 20px;
+    margin-bottom: 20px;
+    border-radius: 10px;
+}
+
+img {
+    width: 100%;
+    border-radius: 10px;
+    margin-bottom: 20px;
+}
+
+.pais__nome {
+    font-size: 1.8rem;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+.pais__populacao {
+    font-size: 1.8rem;
+    font-weight: 500;
+    color: var(--text-color)
+}
+
+.bi-people-fill {
+    margin-right: 10px;
+}

@@ -4,24 +4,26 @@ const container = document.querySelector(".container");
 const paises = document.createElement("div");
 paises.className = "paises";
 
+let todosPaises = [];
+let paisesExibidos = 10;
+
 buscarPaises();
 
 async function buscarPaises() {
     try {
         const response = await fetch(API_REST_COUNTRIES_URL);
         const data = await response.json();
-        const primeirosDezPaises = data.slice(0, 11);
-
-        exibirPaises(primeirosDezPaises);   
+        todosPaises = data;
+        exibirPaises(todosPaises.slice(0, paisesExibidos));     
     }
     catch (error) {
         console.error("Não foi possível buscar os países", error);
     }
 }
 
-function exibirPaises(primeirosDezPaises) {
-    for (let i = 0; i <= primeirosDezPaises.length; i++) {
-        const listaDePaises = primeirosDezPaises[i];
+function exibirPaises(todosPaises) {
+    for (let i = 0; i < todosPaises.length; i++) {
+        const listaDePaises = todosPaises[i];
         console.log(listaDePaises);
 
         const { flags, name, population } = listaDePaises;
@@ -35,9 +37,33 @@ function exibirPaises(primeirosDezPaises) {
             <div class="card">
                 <img src="${png}" alt="${alt}">
                 <p class="pais__nome">${common}</p>
-                <p class="pais__populacao">${population}</p>
+                <p class="pais__populacao"><i class="bi bi-people-fill"></i>${population.toLocaleString('en-US')}</p>
             </div>`;
 
         container.appendChild(paises);  
     }
+}
+
+const buscar = document.getElementById("buscar");
+
+buscar.addEventListener('input', (e) => {
+    const termo = e.target.value.toLowerCase();
+
+    const paisesFiltrados = todosPaises.filter(pais => 
+        pais.name.common.toLowerCase().includes(termo)
+    );
+
+    container.innerHTML = "";
+    exibirPaises(paisesFiltrados);
+});
+
+window.addEventListener('scroll', () => {
+    if(window.innerHeight + window.scrollY >= document.body.offsetHeight - 100) {
+        carregarMais();
+    }
+})
+
+function carregarMais() {
+    paisesExibidos += 10;
+    exibirPaises(todosPaises.slice(0, paisesExibidos));
 }
