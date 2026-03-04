@@ -19,10 +19,16 @@ header h6 {
 }
 
 input {
+    background-image: url('../images/search.svg');
+    background-repeat: no-repeat;
+    background-position: 10px center;
+    background-size: 1.5rem;
+    font-size: 1.7rem;
+    padding-left: 40px;
     max-width: 450px;
-    width: 100%;
     width: 80%;
-    height: 40px;
+    height: 50px;
+    border: 1px solid grey;
     border-radius: 15px;
 }
 
@@ -35,7 +41,6 @@ main {
     max-width: 300px;
     width: 100%;
     padding: 20px;
-    margin-bottom: 20px;
     border-radius: 10px;
 }
 
