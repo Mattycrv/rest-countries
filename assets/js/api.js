@@ -3,6 +3,7 @@ import { API_REST_COUNTRIES_URL } from "./constants.js";
 const container = document.querySelector(".container");
 const paises = document.createElement("div");
 paises.className = "paises";
+container.appendChild(paises);
 
 let todosPaises = [];
 let paisesExibidos = 10;
@@ -22,26 +23,22 @@ async function buscarPaises() {
 }
 
 function exibirPaises(todosPaises) {
-    for (let i = 0; i < todosPaises.length; i++) {
-        const listaDePaises = todosPaises[i];
-        console.log(listaDePaises);
-
-        const { flags, name, population } = listaDePaises;
+    todosPaises.map(pais => {
+        const { flags, name, population } = pais;
         const { alt, png, svg} = flags;
         const {common, nativeName, official } = name;
 
-        const paises = document.createElement("div");
-        paises.className = "paises";
+        const card = document.createElement("div");
+        card.className = "card";
 
-        paises.innerHTML = `
-            <div class="card">
-                <img src="${png}" alt="${alt}">
-                <p class="pais__nome">${common}</p>
-                <p class="pais__populacao"><i class="bi bi-people-fill"></i>${population.toLocaleString('en-US')}</p>
-            </div>`;
-
-        container.appendChild(paises);  
-    }
+        card.innerHTML = `
+            <img src="${png}" alt="${alt}">
+            <p class="pais__nome">${common}</p>
+            <p class="pais__populacao"><i class="bi bi-people-fill"></i>${population.toLocaleString('en-US')}</p>
+            `; 
+        
+        paises.appendChild(card);
+    })
 }
 
 const buscar = document.getElementById("buscar");
@@ -53,7 +50,7 @@ buscar.addEventListener('input', (e) => {
         pais.name.common.toLowerCase().includes(termo)
     );
 
-    container.innerHTML = "";
+    paises.innerHTML = "";
     exibirPaises(paisesFiltrados);
 });
 
@@ -65,5 +62,6 @@ window.addEventListener('scroll', () => {
 
 function carregarMais() {
     paisesExibidos += 10;
+    paises.innerHTML = "";
     exibirPaises(todosPaises.slice(0, paisesExibidos));
 }

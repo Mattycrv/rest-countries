@@ -19,6 +19,8 @@ header h6 {
 }
 
 input {
+    max-width: 450px;
+    width: 100%;
     width: 80%;
     height: 40px;
     border-radius: 15px;
@@ -30,6 +32,8 @@ main {
 
 .card {
     background-color: white;
+    max-width: 300px;
+    width: 100%;
     padding: 20px;
     margin-bottom: 20px;
     border-radius: 10px;
@@ -39,6 +43,16 @@ img {
     width: 100%;
     border-radius: 10px;
     margin-bottom: 20px;
+}
+
+.paises {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    width: 100%;
+    gap: 20px;
+    margin: 0 auto;
 }
 
 .pais__nome {
